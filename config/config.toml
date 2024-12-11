@@ -1,0 +1,9 @@
+debug_push = true
+
+symbols = ["POPCATUSDT"]
+
+notification_times = [
+    3600,
+    32400,
+    61200
+]

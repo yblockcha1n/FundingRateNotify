@@ -1,2 +1,2 @@
 # FundingRateNotify
- FR通知ツール / Pushhover
+ FR通知ツール
