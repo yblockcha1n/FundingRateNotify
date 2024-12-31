@@ -11,7 +11,6 @@ struct TickerResponse {
     result: TickerResult,
 }
 
-/// ticker情報の結果部分の構造
 #[derive(Deserialize)]
 struct TickerResult {
     list: Vec<TickerData>,
@@ -59,11 +58,9 @@ impl BybitAPI {
             anyhow::bail!("APIエラー: {} (コード: {})", response.ret_msg, response.ret_code);
         }
 
-        // ティッカーデータの取得と変換
         if let Some(ticker) = response.result.list.first() {
             match ticker.funding_rate.parse::<f64>() {
                 Ok(fr) => {
-                    // FRを100倍してパーセント表示に変換（小数点4桁まで）
                     Ok(format!("{:.4}", fr * 100.0))
                 }
                 Err(e) => {

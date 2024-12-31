@@ -25,7 +25,6 @@ fn get_next_notification_time(current_time: DateTime<Local>, notification_times:
     notification_times[0]
 }
 
-// 秒数を時刻形式に変換する関数
 fn seconds_to_time_string(seconds: u32) -> String {
     let hours = seconds / 3600;
     let minutes = (seconds % 3600) / 60;
@@ -68,7 +67,6 @@ async fn main() -> Result<()> {
     info!("設定された通知時刻: {:?}", notification_times_str);
     info!("デバッグプッシュモード: {}", if config.debug_push { "有効" } else { "無効" });
 
-    // デバッグモードが有効な場合、起動時に1回テスト通知を実行
     if config.debug_push {
         info!("デバッグモードが有効です。テスト通知を実行します...");
         for symbol in &config.symbols {
@@ -98,7 +96,6 @@ async fn main() -> Result<()> {
         let now = Local::now();
         let seconds_since_midnight = now.hour() * 3600 + now.minute() * 60 + now.second();
 
-        // 設定された時間になったらFRを取得して通知
         if config.notification_times.contains(&seconds_since_midnight) {
             info!("通知時刻になりました。FRの取得を開始します...");
             for symbol in &config.symbols {
